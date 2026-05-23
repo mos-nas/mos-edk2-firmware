@@ -59,9 +59,9 @@ jobs:
         #git apply $BUILDDIR/edk2_files/disable_efi_mem_attr_proto.patch
         make -C BaseTools -j$(nproc --all)
 
-        OvmfPkg/build.sh -b RELEASE -a X64 -t GCC5 -n 20 -D TPM1_ENABLE -D TPM2_ENABLE -D TPM_CONFIG_ENABLE -D SECURE_BOOT_ENABLE -D NETWORK_TLS_ENABLE --pcd gUefiOvmfPkgTokenSpaceGuid.PcdUninstallMemAttrProtocol=TRUE
+        OvmfPkg/build.sh -b RELEASE -a X64 -t GCC -n 20 -D TPM1_ENABLE -D TPM2_ENABLE -D TPM_CONFIG_ENABLE -D SECURE_BOOT_ENABLE -D NETWORK_TLS_ENABLE --pcd gUefiOvmfPkgTokenSpaceGuid.PcdUninstallMemAttrProtocol=TRUE
         mv Build/OvmfX64 Build/OvmfX64_TPM
-        OvmfPkg/build.sh -b RELEASE -a X64 -t GCC5 -n 20 -D FD_SIZE_2MB --pcd gUefiOvmfPkgTokenSpaceGuid.PcdUninstallMemAttrProtocol=TRUE
+        OvmfPkg/build.sh -b RELEASE -a X64 -t GCC -n 20 -D FD_SIZE_2MB --pcd gUefiOvmfPkgTokenSpaceGuid.PcdUninstallMemAttrProtocol=TRUE
 
         cp Build/OvmfX64_TPM/RELEASE_GCC5/FV/OVMF_CODE.fd $PACKAGEDIR/usr/share/qemu/OVMF/OVMF_CODE-TPM.fd
         cp Build/OvmfX64_TPM/RELEASE_GCC5/FV/OVMF_VARS.fd $PACKAGEDIR/usr/share/qemu/OVMF/OVMF_VARS-TPM.fd
