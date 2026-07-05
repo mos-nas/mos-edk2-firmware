@@ -27,7 +27,7 @@ jobs:
       run: |
         # Grab latest edk2 release from official repostiory and latest compiled release version from this repostiory
         OVMF_V=$(curl -u ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }} https://api.github.com/repos/tianocore/edk2/releases/latest | jq -r '.tag_name')
-        AVAIL_OVMF_V="$(curl -u ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }} -s https://api.github.com/repos/${{ github.repository }}/mos-edk2-firmware/releases/latest | jq -r '.tag_name' | sed 's/^v//')"
+        AVAIL_OVMF_V="$(curl -u ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }} -s https://api.github.com/repos/${{ github.repository_owner }}/mos-edk2-firmware/releases/latest | jq -r '.tag_name' | sed 's/^v//')"
 
         # Check if one of the versions is empty
         if [[ -z "${OVMF_V}" || -z "${AVAIL_OVMF_V}" ]]; then
